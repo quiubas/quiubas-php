@@ -1,8 +1,8 @@
 <?php
 
-namespace quiubas;
+namespace Quiubas;
 
-class quiubas
+class Quiubas
 {
     /**
      * @param string Library Version
