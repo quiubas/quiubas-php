@@ -11,8 +11,8 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "ext-openssl": "*",
-        "ext-curl": "*"
+        "lib-openssl": "*",
+        "lib-curl": "*"
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0"
@@ -24,6 +24,8 @@
         }
     ],
     "autoload": {
-        "files": [ "quiubas.php" ]
+        "psr-4": {
+            "Quiubas\\": "Quiubas/"
+        }
     }
 }

@@ -2,13 +2,23 @@
 
 namespace Quiubas;
 
-if ( defined( 'QUIUBAS_BASE_PATH' ) === false ) {
-	define( 'QUIUBAS_BASE_PATH', dirname( __FILE__ ) . '/' );
+$required_extensions = array(
+    'openssl',
+    'curl'
+);
+
+foreach ($required_extensions as $v) {
+    if (extension_loaded($v) === false) {
+        include __DIR__ . '/Quiubas/Exception.php';
+        throw new \Quiubas\Exception(
+            'The "' . $v . '" extension is required by Quiubas Library'
+        );
+        break;
+    }
 }
 
-spl_autoload_register(function($class) {
-	$class = QUIUBAS_BASE_PATH . strtolower(str_replace('\\', '/', $class)) . '.php';
-	if ( file_exists($class) === true ) {
-		require_once $class;
-	}
+spl_autoload_register(function ($class) {
+    $file = __DIR__ . DIRECTORY_SEPARATOR .
+        str_replace('\\', DIRECTORY_SEPARATOR, $class) . '.php';
+    include $file;
 }, false, true);
